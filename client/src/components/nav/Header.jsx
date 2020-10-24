@@ -7,7 +7,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 
-const { SubMenu } = Menu;
+const { SubMenu, Item } = Menu;
 
 const Header = () => {
   const [current, setCurrent] = useState("home");
@@ -18,28 +18,24 @@ const Header = () => {
 
   return (
     <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
-      <Menu.Item key="home" icon={<AppstoreOutlined />}>
+      <Item key="home" icon={<AppstoreOutlined />}>
         Home
-      </Menu.Item>
+      </Item>
       <SubMenu
         key="SubMenu"
         icon={<SettingOutlined />}
         title="User"
         className="float-right"
       >
-        <Menu.Item key="setting:1">Option 1</Menu.Item>
-        <Menu.Item key="setting:2">Option 2</Menu.Item>
+        <Item key="setting:1">Option 1</Item>
+        <Item key="setting:2">Option 2</Item>
       </SubMenu>
-      <Menu.Item
-        key="register"
-        icon={<UserAddOutlined />}
-        className="float-right"
-      >
+      <Item key="register" icon={<UserAddOutlined />} className="float-right">
         Register
-      </Menu.Item>
-      <Menu.Item key="login" icon={<UserOutlined />} className="float-right">
+      </Item>
+      <Item key="login" icon={<UserOutlined />} className="float-right">
         Login
-      </Menu.Item>
+      </Item>
     </Menu>
   );
 };
