@@ -21,19 +21,25 @@ const Header = () => {
       <Menu.Item key="home" icon={<AppstoreOutlined />}>
         Home
       </Menu.Item>
-
-      <Menu.Item key="login" icon={<UserOutlined />}>
-        Login
-      </Menu.Item>
-
-      <Menu.Item key="register" icon={<UserAddOutlined />}>
-        Register
-      </Menu.Item>
-
-      <SubMenu key="SubMenu" icon={<SettingOutlined />} title="User">
+      <SubMenu
+        key="SubMenu"
+        icon={<SettingOutlined />}
+        title="User"
+        className="float-right"
+      >
         <Menu.Item key="setting:1">Option 1</Menu.Item>
         <Menu.Item key="setting:2">Option 2</Menu.Item>
       </SubMenu>
+      <Menu.Item
+        key="register"
+        icon={<UserAddOutlined />}
+        className="float-right"
+      >
+        Register
+      </Menu.Item>
+      <Menu.Item key="login" icon={<UserOutlined />} className="float-right">
+        Login
+      </Menu.Item>
     </Menu>
   );
 };
