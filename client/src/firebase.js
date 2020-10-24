@@ -1,6 +1,6 @@
-import * as firebase from "firebase/auth";
+import * as firebase from "firebase";
 
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyA9M-XjPigltsVLeVhwHz9yaBFNPvS8rPE",
   authDomain: "ecom-20a23.firebaseapp.com",
   databaseURL: "https://ecom-20a23.firebaseio.com",
@@ -11,3 +11,6 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+export const auth = firebase.auth();
+export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
