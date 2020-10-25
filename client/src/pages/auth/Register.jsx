@@ -1,10 +1,27 @@
 import React, { useState } from "react";
+import { auth } from "../../firebase";
 
 const Register = () => {
   const [email, setEmail] = useState("");
-  const handleSubmit = () => {
-    //
+  const [isNoti, setNoti] = useState(false);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const config = {
+      url: "http://localhost:3000/register/complete",
+      handleCodeInApp: true,
+    };
+
+    await auth.sendSignInLinkToEmail(email, config);
+    setNoti(true);
+    window.localStorage.setItem("emailForRegistration", email);
+    setEmail("");
   };
+  const notiMessage = () => (
+    <div class="alert alert-success mt-4" role="alert">
+      Email sent to {email}. Click the link to complete your registration.
+    </div>
+  );
+
   const registerForm = () => (
     <form onSubmit={handleSubmit}>
       <input
@@ -17,6 +34,7 @@ const Register = () => {
       <button type="submit" className="btn btn-raised btn-primary mt-4">
         Register
       </button>
+      {isNoti ? notiMessage() : ""}
     </form>
   );
 
