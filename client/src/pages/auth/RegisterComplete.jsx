@@ -22,6 +22,9 @@ const RegisterComplete = ({ history }) => {
 
       if (result.user.emailVerified) {
         window.localStorage.removeItem("emailForRegistration");
+        let user = auth.currentUser;
+
+        await user.updatePassword(password);
       }
 
       // console.log("RESUKT", result);
