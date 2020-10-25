@@ -14,10 +14,10 @@ const Register = () => {
     await auth.sendSignInLinkToEmail(email, config);
     setNoti(true);
     window.localStorage.setItem("emailForRegistration", email);
-    setEmail("");
+    // setEmail("");
   };
   const notiMessage = () => (
-    <div class="alert alert-success mt-4" role="alert">
+    <div className="alert alert-success mt-4" role="alert">
       Email sent to {email}. Click the link to complete your registration.
     </div>
   );
