@@ -5,6 +5,7 @@ const RegisterComplete = ({ history }) => {
   const [email, setEmail] = useState("");
   const [isNoti, setNoti] = useState(false);
   const [password, setPassword] = useState("");
+  const [err, setErr] = useState("");
 
   useEffect(() => {
     setEmail(window.localStorage.getItem("emailForRegistration"));
@@ -12,18 +13,27 @@ const RegisterComplete = ({ history }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    // setNoti(true);
     try {
       const result = await auth.signInWithEmailLink(
         email,
         window.location.href
       );
-      console.log("RESUKT", result);
-    } catch (error) {}
+
+      if (result.user.emailVerified) {
+        window.localStorage.removeItem("emailForRegistration");
+      }
+
+      // console.log("RESUKT", result);
+    } catch (error) {
+      setErr(error.message);
+      // console.log(error.message);
+      setNoti(true);
+    }
   };
   const notiMessage = () => (
-    <div className="alert alert-success mt-4 p-2" role="alert">
-      Email sent to {email}. Click the link to complete your registration.
+    <div className="alert alert-danger mt-4 p-2" role="alert">
+      {err}
     </div>
   );
 
