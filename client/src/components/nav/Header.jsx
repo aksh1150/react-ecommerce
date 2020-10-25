@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Menu } from "antd";
 import {
   AppstoreOutlined,
+  LogoutOutlined,
   SettingOutlined,
   UserAddOutlined,
   UserOutlined,
@@ -48,7 +49,7 @@ const Header = () => {
         className="float-right"
       >
         <Item key="setting:1">Option 1</Item>
-        <Item key="logout" icon={<UserOutlined />} onClick={logout}>
+        <Item key="logout" icon={<LogoutOutlined />} onClick={logout}>
           Logout
         </Item>
       </SubMenu>
