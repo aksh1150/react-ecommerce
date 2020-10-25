@@ -27,6 +27,8 @@ const RegisterComplete = ({ history }) => {
         await user.updatePassword(password);
 
         const idTokenResult = await user.getIdTokenResult();
+
+        history.push("/");
       }
 
       // console.log("RESUKT", result);
