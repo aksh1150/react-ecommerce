@@ -14,6 +14,17 @@ const RegisterComplete = ({ history }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // setNoti(true);
+
+    if (!email || !password) {
+      setErr("Email or paswword cannot be empty!");
+      setNoti(true);
+      return;
+    }
+    if (password.length < 6) {
+      setErr("Password must be 6 characters long.");
+      setNoti(true);
+      return;
+    }
     try {
       const result = await auth.signInWithEmailLink(
         email,
