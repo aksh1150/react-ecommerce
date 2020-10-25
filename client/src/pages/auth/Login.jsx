@@ -43,7 +43,12 @@ const Login = () => {
         />
       </div>
 
-      <button type="submit" className="btn btn-raised btn-primary mt-4">
+      <button
+        type="submit"
+        onClick={handleSubmit}
+        className="btn btn-raised btn-outline-primary mt-4 mb-4"
+        disabled={!email || password.length < 6}
+      >
         Login
       </button>
       {isNoti ? notiMessage() : ""}
