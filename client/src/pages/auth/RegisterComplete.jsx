@@ -12,15 +12,14 @@ const RegisterComplete = ({ history }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const config = {
-      url: process.env.REACT_APP_REGISTER_REDIRECT_URL,
-      handleCodeInApp: true,
-    };
 
-    await auth.sendSignInLinkToEmail(email, config);
-    setNoti(true);
-    window.localStorage.setItem("emailForRegistration", email);
-    // setEmail("");
+    try {
+      const result = await auth.signInWithEmailLink(
+        email,
+        window.location.href
+      );
+      console.log("RESUKT", result);
+    } catch (error) {}
   };
   const notiMessage = () => (
     <div className="alert alert-success mt-4 p-2" role="alert">
@@ -40,7 +39,7 @@ const RegisterComplete = ({ history }) => {
         autoFocus
       />
       <button type="submit" className="btn btn-raised btn-primary mt-4">
-        Complete Registeration
+        Complete Registration
       </button>
       {isNoti ? notiMessage() : ""}
     </form>
