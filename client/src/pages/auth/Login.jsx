@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { auth, googleAuthProvider } from "../../firebase";
-
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { GoogleOutlined, LoginOutlined } from "@ant-design/icons";
 const Login = ({ history }) => {
@@ -120,6 +120,9 @@ const Login = ({ history }) => {
             <h4>Login</h4>
           )}
           {loginForm()}
+          <Link to="/forgot/password" className="text-danger">
+            Forgot Password
+          </Link>
         </div>
       </div>
     </div>
