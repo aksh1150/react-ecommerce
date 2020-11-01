@@ -19,7 +19,7 @@ const Login = ({ history }) => {
     //   `Email sent to ${email}. Click the link to complete your registration.`
     // );
     try {
-      const result = auth.signInWithEmailAndPassword(email, password);
+      const result = await auth.signInWithEmailAndPassword(email, password);
       const { user } = result;
       const idTokenResult = await user.getIdTokenResult();
       dispatch({
@@ -32,6 +32,7 @@ const Login = ({ history }) => {
       history.push("/");
     } catch (error) {
       console.log(error);
+      setNoti(true);
       setMsg(error.message);
       setLoading(false);
     }
