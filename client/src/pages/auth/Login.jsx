@@ -102,7 +102,6 @@ const Login = ({ history }) => {
         type="submit"
         onClick={googleLogin}
         className="btn btn-raised btn-warning mt-4 mb-4 ml-2"
-        disabled={!email || password.length < 6}
       >
         Login with Google
       </button>
