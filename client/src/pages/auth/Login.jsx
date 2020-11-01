@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { auth } from "../../firebase";
 
+import { useDispatch } from "react-redux";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -9,9 +10,12 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMsg(
-      `Email sent to ${email}. Click the link to complete your registration.`
-    );
+    // setMsg(
+    //   `Email sent to ${email}. Click the link to complete your registration.`
+    // );
+    try {
+      const result = auth.signInWithEmailAndPassword(email, password);
+    } catch (error) {}
   };
 
   const notiMessage = () => (
