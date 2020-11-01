@@ -17,6 +17,8 @@ const Login = () => {
     // );
     try {
       const result = auth.signInWithEmailAndPassword(email, password);
+      const { user } = result;
+      const idTokenResult = await user.getIdTokenResult();
     } catch (error) {}
   };
 
