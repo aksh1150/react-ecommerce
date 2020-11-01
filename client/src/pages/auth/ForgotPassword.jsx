@@ -23,7 +23,12 @@ const ForgotPassword = ({ history }) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email"
+          autoFocus
         />
+        <br />
+        <button className="btn btn-raised btn-primary" disabled={!email}>
+          Submit
+        </button>
       </form>
     </div>
   );
