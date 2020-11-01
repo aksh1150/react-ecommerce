@@ -10,18 +10,19 @@ const ForgotPassword = ({ history }) => {
     e.preventDefault();
   };
   return (
-    <div className="container col-md-6 offset-md-2 p-5">
+    <div className="container col-md-6 offset-md-3 p-4">
       {loading ? (
         <h4 className="text-danger">Loading...</h4>
       ) : (
         <h4>Forgot Password</h4>
       )}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="mt-5">
         <input
           type="email"
           className="form-control"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email"
         />
       </form>
     </div>
