@@ -8,6 +8,8 @@ const Login = () => {
   const [isNoti, setNoti] = useState(false);
   const [msg, setMsg] = useState("");
 
+  let dispatch = useDispatch();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // setMsg(
