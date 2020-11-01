@@ -9,6 +9,12 @@ const ForgotPassword = ({ history }) => {
   const [msg, setMsg] = useState("");
   const [alertType, setAlertType] = useState("alert-warning");
 
+  const { user } = useSelector((state) => ({ ...state }));
+
+  useEffect(() => {
+    if (user && user.token) history.push("/");
+  }, [user]); // getting user from firebase it take some time. So we add here [user] instead empty [] so when user successfully recive from fire base we update and redirec to home page.
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);

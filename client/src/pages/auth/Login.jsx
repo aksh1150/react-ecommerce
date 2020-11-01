@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { auth, googleAuthProvider } from "../../firebase";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { GoogleOutlined, LoginOutlined } from "@ant-design/icons";
 const Login = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -10,6 +10,11 @@ const Login = ({ history }) => {
   const [msg, setMsg] = useState("");
 
   const [loading, setLoading] = useState(false);
+
+  const { user } = useSelector((state) => ({ ...state }));
+  useEffect(() => {
+    if (user && user.token) history.push("/");
+  }, [user]); // getting user from firebase it take some time. So we add here [user] instead empty [] so when user successfully recive from fire base we update and redirec to home page.
 
   let dispatch = useDispatch();
 
