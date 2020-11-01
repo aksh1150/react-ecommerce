@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth } from "../../firebase";
+import { auth, googleAuthProvider } from "../../firebase";
 
 import { useDispatch } from "react-redux";
 const Login = ({ history }) => {
@@ -44,8 +44,27 @@ const Login = ({ history }) => {
     </div>
   );
 
-  const googleLogin = () => {
-    //
+  const googleLogin = async () => {
+    auth
+      .signInWithPopup(googleAuthProvider)
+      .then(async (result) => {
+        const { user } = result;
+        const idTokenResult = await user.getIdTokenResult();
+
+        dispatch({
+          type: "LOGGED_IN_USER",
+          payload: {
+            email: user.email,
+            token: idTokenResult.token,
+          },
+        });
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        setNoti(true);
+        setMsg(err.message);
+      });
   };
 
   const loginForm = () => (
