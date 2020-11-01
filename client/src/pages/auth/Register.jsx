@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { auth } from "../../firebase";
 
-const Register = () => {
+import { useSelector } from "react-redux";
+const Register = ({ history }) => {
   const [email, setEmail] = useState("");
   const [isNoti, setNoti] = useState(false);
+
+  const { user } = useSelector((state) => ({ ...state }));
+  useEffect(() => {
+    if (user && user.token) history.push("/");
+  }, [user]); // getting user from firebase it take some time. So we add here [user] instead empty [] so when user successfully recive from fire base we update and redirec to home page.
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
