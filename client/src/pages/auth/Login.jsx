@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { auth } from "../../firebase";
+import { auth, googleAuthProvider } from "../../firebase";
 
 import { useDispatch } from "react-redux";
+import { GoogleOutlined, LoginOutlined } from "@ant-design/icons";
 const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,6 +45,29 @@ const Login = ({ history }) => {
     </div>
   );
 
+  const googleLogin = async () => {
+    auth
+      .signInWithPopup(googleAuthProvider)
+      .then(async (result) => {
+        const { user } = result;
+        const idTokenResult = await user.getIdTokenResult();
+
+        dispatch({
+          type: "LOGGED_IN_USER",
+          payload: {
+            email: user.email,
+            token: idTokenResult.token,
+          },
+        });
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        setNoti(true);
+        setMsg(err.message);
+      });
+  };
+
   const loginForm = () => (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
@@ -70,10 +94,17 @@ const Login = ({ history }) => {
       <button
         type="submit"
         onClick={handleSubmit}
-        className="btn btn-raised btn-outline-primary mt-4 mb-4"
+        className="btn btn-raised btn-primary mt-4 mb-4"
         disabled={!email || password.length < 6}
       >
-        Login
+        {<LoginOutlined />} Login
+      </button>
+      <button
+        type="submit"
+        onClick={googleLogin}
+        className="btn btn-raised btn-warning mt-4 mb-4 ml-2"
+      >
+        {<GoogleOutlined />} Login with Google
       </button>
       {isNoti ? notiMessage() : ""}
     </form>
@@ -83,7 +114,11 @@ const Login = ({ history }) => {
     <div className="container p-4">
       <div className="row">
         <div className="col-md-6 offset-md-2">
-          <h4>Login</h4>
+          {loading ? (
+            <h4 className="text-danger">Loading...</h4>
+          ) : (
+            <h4>Login</h4>
+          )}
           {loginForm()}
         </div>
       </div>
