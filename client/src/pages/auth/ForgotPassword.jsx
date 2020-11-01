@@ -9,6 +9,8 @@ const ForgotPassword = ({ history }) => {
   const [msg, setMsg] = useState("");
   const [alertType, setAlertType] = useState("alert-warning");
 
+  const { user } = useSelector((state) => ({ ...state }));
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
