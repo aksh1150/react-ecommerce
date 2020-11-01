@@ -41,13 +41,13 @@ const Header = () => {
   return (
     <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
       <Item key="home" icon={<AppstoreOutlined />}>
-        <Link to="/">Home - {JSON.stringify(user)}</Link>
+        <Link to="/">Home </Link>
       </Item>
       {user && (
         <SubMenu
           key="SubMenu"
           icon={<SettingOutlined />}
-          title="User"
+          title={user.email && user.email.split("@")[0]}
           className="float-right"
         >
           <Item key="setting:1">Option 1</Item>

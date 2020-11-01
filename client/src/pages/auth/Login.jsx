@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { auth, googleAuthProvider } from "../../firebase";
 
 import { useDispatch } from "react-redux";
+import { GoogleOutlined, LoginOutlined } from "@ant-design/icons";
 const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -96,14 +97,14 @@ const Login = ({ history }) => {
         className="btn btn-raised btn-primary mt-4 mb-4"
         disabled={!email || password.length < 6}
       >
-        Login
+        {<LoginOutlined />} Login
       </button>
       <button
         type="submit"
         onClick={googleLogin}
         className="btn btn-raised btn-warning mt-4 mb-4 ml-2"
       >
-        Login with Google
+        {<GoogleOutlined />} Login with Google
       </button>
       {isNoti ? notiMessage() : ""}
     </form>
