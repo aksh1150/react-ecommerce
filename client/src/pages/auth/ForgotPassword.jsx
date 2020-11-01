@@ -7,6 +7,8 @@ const ForgotPassword = ({ history }) => {
   const [loading, setLoading] = useState(false);
   const [isNoti, setNoti] = useState(false);
   const [msg, setMsg] = useState("");
+  const [alertType, setAlertType] = useState("alert-warning");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -17,7 +19,13 @@ const ForgotPassword = ({ history }) => {
     };
     await auth
       .sendPasswordResetEmail(email, config)
-      .then(() => {})
+      .then(() => {
+        setEmail("");
+        setLoading(false);
+        setNoti(true);
+        setAlertType("alert-success");
+        setMsg("Check your email for password reset link");
+      })
       .catch((error) => {
         console.log(error);
         setLoading(false);
@@ -27,7 +35,7 @@ const ForgotPassword = ({ history }) => {
   };
 
   const notiMessage = () => (
-    <div className="alert alert-warning mt-4" role="alert">
+    <div className={`alert mt-4 ${alertType}`} role="alert">
       {msg}
     </div>
   );
