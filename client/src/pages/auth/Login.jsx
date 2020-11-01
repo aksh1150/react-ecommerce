@@ -44,6 +44,10 @@ const Login = ({ history }) => {
     </div>
   );
 
+  const googleLogin = () => {
+    //
+  };
+
   const loginForm = () => (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
@@ -70,10 +74,18 @@ const Login = ({ history }) => {
       <button
         type="submit"
         onClick={handleSubmit}
-        className="btn btn-raised btn-outline-primary mt-4 mb-4"
+        className="btn btn-raised btn-primary mt-4 mb-4"
         disabled={!email || password.length < 6}
       >
         Login
+      </button>
+      <button
+        type="submit"
+        onClick={googleLogin}
+        className="btn btn-raised btn-warning mt-4 mb-4 ml-2"
+        disabled={!email || password.length < 6}
+      >
+        Login with Google
       </button>
       {isNoti ? notiMessage() : ""}
     </form>
@@ -84,9 +96,9 @@ const Login = ({ history }) => {
       <div className="row">
         <div className="col-md-6 offset-md-2">
           {loading ? (
-            <h4>Login</h4>
-          ) : (
             <h4 className="text-danger">Loading...</h4>
+          ) : (
+            <h4>Login</h4>
           )}
           {loginForm()}
         </div>
