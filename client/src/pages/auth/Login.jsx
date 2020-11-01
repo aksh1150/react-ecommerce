@@ -83,7 +83,11 @@ const Login = ({ history }) => {
     <div className="container p-4">
       <div className="row">
         <div className="col-md-6 offset-md-2">
-          <h4>Login</h4>
+          {loading ? (
+            <h4>Login</h4>
+          ) : (
+            <h4 className="text-danger">Loading...</h4>
+          )}
           {loginForm()}
         </div>
       </div>
