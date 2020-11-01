@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 import firebase from "firebase";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useHistory } from "react-router-dom";
 
@@ -22,6 +22,7 @@ const Header = () => {
   const [current, setCurrent] = useState("home");
 
   let dispatch = useDispatch();
+  let state = useSelector((state) => state);
   let history = useHistory();
 
   const handleClick = (e) => {
