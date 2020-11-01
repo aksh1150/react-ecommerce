@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { auth } from "../../firebase";
 
 import { useDispatch } from "react-redux";
-const Login = () => {
+const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isNoti, setNoti] = useState(false);
@@ -26,6 +26,7 @@ const Login = () => {
           token: idTokenResult.token,
         },
       });
+      history.push("/");
     } catch (error) {}
   };
 
