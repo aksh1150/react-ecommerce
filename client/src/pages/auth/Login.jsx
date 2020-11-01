@@ -8,10 +8,13 @@ const Login = ({ history }) => {
   const [isNoti, setNoti] = useState(false);
   const [msg, setMsg] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   let dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     // setMsg(
     //   `Email sent to ${email}. Click the link to complete your registration.`
     // );
@@ -27,11 +30,15 @@ const Login = ({ history }) => {
         },
       });
       history.push("/");
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      setMsg(error.message);
+      setLoading(false);
+    }
   };
 
   const notiMessage = () => (
-    <div className="alert alert-success mt-4" role="alert">
+    <div className="alert alert-warning mt-4" role="alert">
       {msg}
     </div>
   );
